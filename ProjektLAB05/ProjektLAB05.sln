@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalWebApp", "WebApplication1\AnimalWebApp.csproj", "{E91F8ABA-D68F-4204-912A-E560FCC20104}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalWebApp", "AnimalWebApp\AnimalWebApp.csproj", "{E91F8ABA-D68F-4204-912A-E560FCC20104}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalWebAppTest", "AnimalWebAppTest\AnimalWebAppTest.csproj", "{282CAD90-9276-4AD7-B78B-8B74F9E12B60}"
 EndProject

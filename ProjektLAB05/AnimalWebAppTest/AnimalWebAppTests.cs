@@ -1,7 +1,7 @@
 namespace AnimalWebAppTest
 {
     [TestClass]
-    public class UnitTest1
+    public class AnimalWebAppTests
     {
         [TestMethod]
         public void TestMethod1()
