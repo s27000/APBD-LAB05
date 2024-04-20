@@ -17,19 +17,43 @@ namespace AnimalWebApp.Services
             return _animalRepository.GetAnimals(orderBy);
         }
 
-        public int AddAnimal(Animal animal)
+        public void AddAnimal(Animal animal)
         {
-            return _animalRepository.AddAnimal(animal);
+            try
+            {
+                DataHandler.Verify(animal);
+                _animalRepository.AddAnimal(animal);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public int EditAnimal(Animal animal)
+        public void EditAnimal(Animal animal)
         {
-            return _animalRepository.EditAnimal(animal);
+            try
+            {
+                DataHandler.Verify(animal);
+                _animalRepository.EditAnimal(animal);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public int RemoveAnimal(int idAnimal)
+        public void RemoveAnimal(int idAnimal)
         {
-            return _animalRepository.RemoveAnimal(idAnimal);
+            try
+            {
+               _animalRepository.RemoveAnimal(idAnimal);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
     }
 }

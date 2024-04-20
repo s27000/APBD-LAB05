@@ -55,24 +55,33 @@ namespace AnimalWebApp.Repository
             return animals;
         }
 
-        public int AddAnimal(Animal animal)
+        public void AddAnimal(Animal animal)
         {
-            using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
-            con.Open();
+            try
+            {
+                using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+                con.Open();
 
-            using var cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = "INSERT INTO Animal(IdAnimal, Name, Description, Category, Area) VALUES (@IdAnimal, @Name, @Description, @Category, @Area)";
-            cmd.Parameters.AddWithValue("@IdAnimal", animal.IdAnimal);
-            cmd.Parameters.AddWithValue("@Name", animal.Name);
-            cmd.Parameters.AddWithValue("@Description", animal.Description);
-            cmd.Parameters.AddWithValue("@Category", animal.Category);
-            cmd.Parameters.AddWithValue("@Area", animal.Area);
+                using var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "INSERT INTO Animal(IdAnimal, Name, Description, Category, Area) VALUES (@IdAnimal, @Name, @Description, @Category, @Area)";
+                cmd.Parameters.AddWithValue("@IdAnimal", animal.IdAnimal);
+                cmd.Parameters.AddWithValue("@Name", animal.Name);
+                cmd.Parameters.AddWithValue("@Description", animal.Description);
+                cmd.Parameters.AddWithValue("@Category", animal.Category);
+                cmd.Parameters.AddWithValue("@Area", animal.Area);
 
-            var affectedCount = cmd.ExecuteNonQuery();
-            return affectedCount;
+                var affectedCount = cmd.ExecuteNonQuery();
+                if (affectedCount == 0)
+                {
+                    throw new Exception("Request returned no result");
+                }
+            }catch(SqlException)
+            {
+                throw;
+            }
         }
-        public int EditAnimal(Animal animal)
+        public void EditAnimal(Animal animal)
         {
             using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
             con.Open();
@@ -87,9 +96,12 @@ namespace AnimalWebApp.Repository
             cmd.Parameters.AddWithValue("@IdAnimal", animal.IdAnimal);
 
             var affectedCount = cmd.ExecuteNonQuery();
-            return affectedCount;
+            if (affectedCount == 0)
+            {
+                throw new Exception("Request returned no result");
+            }
         }
-        public int RemoveAnimal(int idAnimal)
+        public void RemoveAnimal(int idAnimal)
         {
             using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
             con.Open();
@@ -100,7 +112,10 @@ namespace AnimalWebApp.Repository
             cmd.Parameters.AddWithValue("@IdAnimal", idAnimal);
 
             var affectedCount = cmd.ExecuteNonQuery();
-            return affectedCount;
+            if (affectedCount == 0)
+            {
+                throw new Exception("Request returned no result");
+            }
         }
     }
 }

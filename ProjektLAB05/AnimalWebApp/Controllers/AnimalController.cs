@@ -24,34 +24,41 @@ namespace AnimalWebApp.Controllers
         [HttpPost]
         public IActionResult AddAnimal(Animal animal)
         {
-            var affectedCount = _animalService.AddAnimal(animal);
-            if(affectedCount == 0)
+            try
             {
-                return BadRequest("Request returned no result");
+                _animalService.AddAnimal(animal);
+                return Ok();
+            }catch(Exception e)
+            {
+                return BadRequest(e.Message);
             }
-            return Ok();
         }
 
         [HttpPut]
         public IActionResult UpdateAnimal(Animal animal)
         {
-            var affectedCount = _animalService.EditAnimal(animal);
-            if (affectedCount == 0)
+            try
             {
-                return BadRequest("Request returned no result");
+                _animalService.EditAnimal(animal);
+                return Ok();
+            }catch(Exception e)
+            {
+                return BadRequest(e.Message);
             }
-            return Ok();
         }
 
         [HttpDelete]
         public IActionResult DeleteAnimal(int idAnimal)
         {
-            var affectedCount = _animalService.RemoveAnimal(idAnimal);
-            if(affectedCount == 0)
+            try
             {
-                return BadRequest("Request returned no result");
+                _animalService.RemoveAnimal(idAnimal);
+                return Ok();
             }
-            return Ok();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
