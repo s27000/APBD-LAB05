@@ -1,3 +1,6 @@
+using AnimalWebApp.Repository;
+using Microsoft.Extensions.Configuration;
+
 namespace AnimalWebAppTest
 {
     [TestClass]
@@ -6,7 +9,8 @@ namespace AnimalWebAppTest
         [TestMethod]
         public void TestMethod1()
         {
-
+            IConfiguration configuration;
+            AnimalRepository repository = new AnimalRepository(configuration("ConnectionStrings:DefaultConnection"));
         }
     }
 }

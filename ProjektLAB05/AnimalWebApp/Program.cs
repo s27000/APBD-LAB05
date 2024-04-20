@@ -1,6 +1,7 @@
-using System.Data.SqlClient;
+using AnimalWebApp.Repository;
+using AnimalWebApp.Services;
 
-namespace WebApplication1
+namespace AnimalWebApp
 {
     public class Program
     {
@@ -14,6 +15,8 @@ namespace WebApplication1
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+            builder.Services.AddScoped<IAnimalService, AnimalService>();
 
             var app = builder.Build();
 

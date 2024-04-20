@@ -1,8 +1,8 @@
 ﻿using AnimalWebApp.Model;
 
-namespace AnimalWebApp.Services
+namespace AnimalWebApp.Repository
 {
-    public interface IAnimalService
+    public interface IAnimalRepository
     {
         IEnumerable<Animal> GetAnimals(string? orderBy);
         int AddAnimal(Animal animal);
